@@ -52,14 +52,14 @@ docker rmi dev-db-tmp
 docker images
 
 # build and publish docker images
-docker tag dev-db:latest sqldevopsacs.azurecr.io/dev-db:latest
+docker tag dev-db:latest <your azure container registry>dev-db:latest
 #docker login sqldevopsacs.azurecr.io
-#docker push sqldevopsacs.azurecr.io/dev-db:latest
+#docker push <your azure container registry>dev-db:latest
 
 docker rmi dev-db
 docker rm -f sqlpassdev
 docker images
 
-docker run --name troubleshooting -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Yukon900' -p 1433:1433 -d sqldevopsacs.azurecr.io/dev-db:latest /opt/mssql/bin/sqlservr
+docker run --name troubleshooting -e 'ACCEPT_EULA=Y' -e 'SA_PASSWORD=Yukon900' -p 1433:1433 -d <your azure container registry>dev-db:latest /opt/mssql/bin/sqlservr
 
 docker rm -f troubleshooting
